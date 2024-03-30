@@ -147,7 +147,7 @@
         android:layout_height="57dp"
         android:layout_margin="16dp"
         android:background="@drawable/greenbuttongradient"
-        android:fontFamily="@font/latoextrabold"
+        android:fontFamily="@font/latobold"
         android:text="LOGIN"
         android:textAllCaps="false"
         android:textColor="@color/white"
