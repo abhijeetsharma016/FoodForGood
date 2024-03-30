@@ -8,6 +8,20 @@
     android:paddingLeft="15dp"
     tools:context=".SignupActivity">
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/yeonsungregular"
+        android:text="Design by\nAbhijeet Sharma"
+        android:textAlignment="center"
+        android:textColor="@color/textColor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="100dp"
@@ -35,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Deliver Favourite Food"
+        android:textColor="@color/textColor"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
         app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -46,6 +61,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/latoextrabold"
         android:text="Sign Up Here"
+        android:textColor="@color/textColor"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/textView15"
         app:layout_constraintHorizontal_bias="0.493"
@@ -172,18 +188,20 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/alreadyhaveaccountbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/alreadyhaveaccountbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/latobold"
         android:text="Already Have An Account?"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
