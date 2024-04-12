@@ -59,12 +59,12 @@
                 android:background="@android:color/transparent"
                 android:padding="2.dp"
                 android:src="@drawable/minus_button"
-                app:layout_constraintBottom_toBottomOf="@+id/quentity"
-                app:layout_constraintEnd_toStartOf="@+id/quentity"
-                app:layout_constraintTop_toTopOf="@+id/quentity" />
+                app:layout_constraintBottom_toBottomOf="@+id/cartItemQuentity"
+                app:layout_constraintEnd_toStartOf="@+id/cartItemQuentity"
+                app:layout_constraintTop_toTopOf="@+id/cartItemQuentity" />
 
             <TextView
-                android:id="@+id/quentity"
+                android:id="@+id/cartItemQuentity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
