@@ -14,6 +14,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.foodforgood.R
 import com.example.foodforgood.adapter.popularAdapter
 import com.example.foodforgood.databinding.FragmentHomeBinding
+import com.example.foodforgood.menuBottomSheet
 
 
 /**
@@ -33,6 +34,11 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater,container, false)
+
+        binding.viewAllMenu.setOnClickListener{
+            val bottomSheetDialog = menuBottomSheet()
+            bottomSheetDialog.show(parentFragmentManager, "Test")
+        }
         return binding.root
     }
 

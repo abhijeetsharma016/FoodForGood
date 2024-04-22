@@ -3,7 +3,6 @@ package com.example.foodforgood.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodforgood.databinding.FragmentMenuBottomSheetBinding
 import com.example.foodforgood.databinding.MenuItemBinding
 
 class menuAdapter(private val menuItemName: MutableList<String>, private val menuItemPrice : MutableList<String>, private val MenuImage:MutableList<Int>): RecyclerView.Adapter<menuAdapter.MenuViewHolder>() {
