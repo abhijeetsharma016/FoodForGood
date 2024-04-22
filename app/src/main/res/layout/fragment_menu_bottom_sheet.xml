@@ -4,11 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:gravity="center"
+
     android:background="@color/white"
     tools:context=".menuBottomSheet">
 
     <!-- TODO: Update blank fragment layout -->
+    <ImageButton
+        android:id="@+id/menuButtonBack"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/back_icon" />
     <TextView
         android:layout_marginTop="8dp"
         android:textSize="24sp"
