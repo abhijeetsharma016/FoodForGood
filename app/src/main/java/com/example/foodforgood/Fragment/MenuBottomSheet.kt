@@ -1,4 +1,4 @@
-package com.example.foodforgood
+package com.example.foodforgood.Fragment
 
 import android.os.Bundle
 
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodforgood.R
 
 import com.example.foodforgood.adapter.menuAdapter
 import com.example.foodforgood.databinding.FragmentMenuBottomSheetBinding

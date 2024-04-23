@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -14,7 +13,6 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.foodforgood.R
 import com.example.foodforgood.adapter.popularAdapter
 import com.example.foodforgood.databinding.FragmentHomeBinding
-import com.example.foodforgood.menuBottomSheet
 
 
 /**
