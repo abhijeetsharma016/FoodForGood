@@ -55,9 +55,9 @@ class searchFragment : Fragment() {
 
         }
     }
-    private val filterMenuFoodName = MutableListOf<String>
-    private val filterMenuItemPrice = MutableListOf<String>
-    private val filterMenuImage = MutableListOf<String>
+    private val filterMenuFoodName = mutableListOf<String>()
+    private val filterMenuItemPrice = mutableListOf<String>()
+    private val filterMenuImage = mutableListOf<Int>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -70,13 +70,34 @@ class searchFragment : Fragment() {
 
         //Setup for search view
         setupSearchView()
+        //show all menu items
+        showAllMenu()
         return binding.root
     }
+
+    private fun showAllMenu() {
+        filterMenuFoodName.clear()
+        filterMenuItemPrice.clear()
+        filterMenuImage.clear()
+
+        filterMenuFoodName.addAll(originalMenuFoodName)
+        filterMenuItemPrice.addAll(originalMenuItemPrice)
+        filterMenuImage.addAll(originalMenuImage)
+
+        adapter.notifyDataSetChanged()
+    }
+
     private fun setupSearchView(){
         binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener {
 
-            override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean {
                 filterMenuItems(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filterMenuItems(newText)
+                return true
             }
         })
     }
@@ -93,6 +114,7 @@ class searchFragment : Fragment() {
                 filterMenuImage.add(originalMenuImage[index])
             }
         }
+        adapter.notifyDataSetChanged()
     }
 
     companion object {
