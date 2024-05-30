@@ -23,7 +23,10 @@ class NotificationAdapter(private val notification: ArrayList<String>, private v
 
     inner class NotificationViewHolder(private val binding: NotificationItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
-            TODO("Not yet implemented")
+            binding.apply {
+                notificationTextView.text = notification[position]
+                notificationImageView.setImageResource(notificationImage[position])
+            }
         }
 
     }
