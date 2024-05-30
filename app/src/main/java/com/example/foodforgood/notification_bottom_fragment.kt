@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodforgood.adapter.NotificationAdapter
 import com.example.foodforgood.databinding.FragmentNotificationBottomFragmentBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -31,6 +32,10 @@ class notification_bottom_fragment : BottomSheetDialogFragment() {
 
         val notificationImages = listOf(R.drawable.sademoji, R.drawable.truck, R.drawable.congrats)
         val adapter = NotificationAdapter(ArrayList(notifications), ArrayList( notificationImages))
+
+        binding.notificationRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.notificationRecyclerView.adapter = adapter
+
         return binding.root
     }
 
