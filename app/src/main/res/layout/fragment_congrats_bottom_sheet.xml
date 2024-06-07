@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CongratsBottomSheet">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:text="Congrats\n Your Order Is Placed"
+            android:textAlignment="center"
+            android:textColor="@color/textColor"
+            android:textSize="32sp" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/congrats" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/GoHome"
+            android:layout_width="157dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/gohomeshape"
+            android:text="Go Home"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:fontFamily="@font/yeonsungregular"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+</FrameLayout>
