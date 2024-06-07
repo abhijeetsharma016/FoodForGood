@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="clip_vertical"
     android:background="@color/white"
-    tools:context="drawable.foodforgood.PayOutActivity">
+    tools:context=".PayOutActivity">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/button8"
-        android:background="transparent"
+        android:background="@android:color/transparent"
         android:src="@drawable/back_icon"
         android:scaleType="centerCrop"
         android:layout_width="32dp"
@@ -57,6 +57,7 @@
             android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/yeonsungregular"
             android:text="Name" />
 
         <EditText
@@ -86,6 +87,7 @@
             android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/yeonsungregular"
             android:text="Address" />
 
         <EditText
@@ -97,7 +99,7 @@
             android:background="@android:color/transparent"
             android:ems="10"
             android:fontFamily="@font/latoregular"
-            android:inputType="Multiline"
+            android:inputType="textMultiLine"
             android:text="Lorem ipsum is placeholder text
 commonly used in the graphic,
 print, and publishing industries
@@ -120,6 +122,7 @@ for previewing layouts and visual " />
             android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/yeonsungregular"
             android:text="Phone" />
 
         <EditText
@@ -149,6 +152,7 @@ for previewing layouts and visual " />
             android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/yeonsungregular"
             android:text="Payment Method" />
 
         <ImageView
@@ -177,6 +181,7 @@ for previewing layouts and visual " />
             android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/yeonsungregular"
             android:text="Total Amount" />
 
         <EditText

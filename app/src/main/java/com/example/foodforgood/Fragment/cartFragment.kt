@@ -1,11 +1,13 @@
 package com.example.foodforgood.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodforgood.PayOutActivity
 import com.example.foodforgood.R
 import com.example.foodforgood.adapter.cartAdapter
 import com.example.foodforgood.databinding.CartItemBinding
@@ -40,6 +42,12 @@ class cartFragment : Fragment() {
         val adapter = cartAdapter(ArrayList(cartFoodName), ArrayList(cartItemPrice), ArrayList(cartImage))
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.cartRecyclerView.adapter = adapter
+        binding.cartProceedButton
+
+        binding.cartProceedButton.setOnClickListener{
+            val intent = Intent(requireContext(), PayOutActivity::class.java)
+            startActivity(intent)
+        }
         return binding.root
     }
 

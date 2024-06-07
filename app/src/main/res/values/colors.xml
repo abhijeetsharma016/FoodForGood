@@ -6,5 +6,6 @@
     <color name="startColor">#53E88B</color>
     <color name="endColor">#15BE77</color>
     <color name="iconColor">#FEAD1D</color>
+    <color name="semi_transparent_black">#80000000</color>
 
 </resources>

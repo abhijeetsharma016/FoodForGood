@@ -1,4 +1,4 @@
-package drawable.foodforgood
+package com.example.foodforgood
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
