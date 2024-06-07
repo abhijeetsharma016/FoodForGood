@@ -201,16 +201,16 @@ for previewing layouts and visual " />
 </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/placeMyOrder"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="Place My Order"
-        android:textColor="@color/textColor"
-        android:layout_marginBottom="32dp"
+        android:layout_gravity="bottom"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/edittextshape"
-        android:textAllCaps="false"
         android:fontFamily="@font/yeonsungregular"
-        android:layout_gravity="bottom"
-        />
+        android:text="Place My Order"
+        android:textAllCaps="false"
+        android:textColor="@color/textColor" />
 </FrameLayout>
