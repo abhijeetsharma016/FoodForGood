@@ -30,7 +30,7 @@ class menuAdapter(private val menuItemName: MutableList<String>, private val men
             binding.root.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    itemClickListener.onItemClick(position)
+                    itemClickListener?.onItemClick(position)
                 }
                 //Set OnClick Listener to open details
 
@@ -50,8 +50,11 @@ class menuAdapter(private val menuItemName: MutableList<String>, private val men
         }
 
     }
+    interface OnClickListener {
+
+        fun onItemClick(position: Int) {
+        }
+    }
+
 }
 
-private fun OnClickListener?.onItemClick(position: Int) {
-    TODO("Not yet implemented")
-}
