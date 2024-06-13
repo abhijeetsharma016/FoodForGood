@@ -23,19 +23,20 @@ I welcome contributions! If you're interested in contributing, please feel free 
 
 
 ## SCREENSHOTS
-![WhatsApp Image 2024-06-13 at 21 42 45_966f51e4](https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/0a001be8-8c3f-4e9c-91a7-4f2902b4a647)
 
-![WhatsApp Image 2024-06-13 at 21 42 46_b1e2bc23](https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/bd362ff1-af6c-4aa5-a965-f497ba29f0c7)
-
-![WhatsApp Image 2024-06-13 at 21 42 47_698197c3](https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/1bcb100d-0217-40bc-9100-a4624cda3368)
-
-![WhatsApp Image 2024-06-13 at 21 42 47_bd81376f](https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/462dcb98-63e8-42c8-ac88-fbd11f1ee0d6)
-
-![WhatsApp Image 2024-06-13 at 21 42 48_904c5a68](https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/a1782aa5-bf12-4317-a4ff-cfd64fc88e1f)
-
-![WhatsApp Image 2024-06-13 at 21 42 48_50fe2363](https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/7dedf4b7-ddb4-44ff-9b86-e05f83ff0eac)
-
-![WhatsApp Image 2024-06-13 at 21 42 49_1a12f68f](https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/f8cbf5ac-bb23-4ab9-b4ae-5d04d3f1285c)
-
-![WhatsApp Image 2024-06-13 at 21 42 52_b87a323c](https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/de519392-dc57-42a9-9e7a-2da42d81d423)
-
+<p float="left">
+  <img src="https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/0a001be8-8c3f-4e9c-91a7-4f2902b4a647" width="400" />
+  <img src="https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/bd362ff1-af6c-4aa5-a965-f497ba29f0c7" width="400" /> 
+</p>
+<p float="left">
+  <img src="https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/1bcb100d-0217-40bc-9100-a4624cda3368" width="400" />
+  <img src="https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/462dcb98-63e8-42c8-ac88-fbd11f1ee0d6" width="400" />
+</p>
+<p float="left">
+  <img src="https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/a1782aa5-bf12-4317-a4ff-cfd64fc88e1f" width="400" />
+  <img src="https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/7dedf4b7-ddb4-44ff-9b86-e05f83ff0eac" width="400" />
+</p>
+<p float="left">
+  <img src="https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/f8cbf5ac-bb23-4ab9-b4ae-5d04d3f1285c" width="400" />
+  <img src="https://github.com/abhijeetsharma016/FoodForGood/assets/128720483/de519392-dc57-42a9-9e7a-2da42d81d423" width="400" />
+</p>
