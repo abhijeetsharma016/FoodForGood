@@ -1,6 +1,6 @@
 # FOODFORGOOD: A Food Delivery App
 
-Welcome to FOODFORGOOD, a food delivery app that aims to make ordering food as simple and convenient as possible. 
+Ilcome to FOODFORGOOD, a food delivery app that aims to make ordering food as simple and convenient as possible. 
 
 ## About the App
 
@@ -15,11 +15,11 @@ FOODFORGOOD is currently under development. It is being built using Kotlin, Fire
 
 ## Progress
 
-While the app is still under development, we have made significant progress. We encourage you to check out our progress and provide any feedback you may have.
+While the app is still under development, I have made significant progress. I encourage you to check out our progress and provide any feedback you may have.
 
 ## Contributions
 
-I welcome contributions! If you're interested in contributing, please feel free to fork the repository and submit a pull request. We appreciate any help you can provide.
+I Ilcome contributions! If you're interested in contributing, please feel free to fork the repository and submit a pull request. I appreciate any help you can provide.
 
 
 ## SCREENSHOTS
