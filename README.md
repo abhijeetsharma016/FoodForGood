@@ -1,6 +1,6 @@
 # FOODFORGOOD: A Food Delivery App
 
-Ilcome to FOODFORGOOD, a food delivery app that aims to make ordering food as simple and convenient as possible. 
+I welcome to FOODFORGOOD, a food delivery app that aims to make ordering food as simple and convenient as possible. 
 
 ## About the App
 
