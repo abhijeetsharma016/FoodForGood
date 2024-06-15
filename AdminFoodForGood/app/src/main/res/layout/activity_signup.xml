@@ -81,6 +81,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/latoregular"
             android:inputType="none"
+            android:background="@color/white"
             android:text="Choose Your Location"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -166,7 +167,7 @@
         app:layout_constraintTop_toBottomOf="@+id/EmailOrPhone" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/LoginButton"
+        android:id="@+id/CreateAccount"
         android:layout_width="157dp"
         android:layout_height="57dp"
         android:layout_marginTop="12dp"
@@ -189,10 +190,10 @@
         android:fontFamily="@font/latobold"
         android:text="Already have an account?"
         android:textColor="@color/textcolor"
-        app:layout_constraintEnd_toEndOf="@+id/LoginButton"
+        app:layout_constraintEnd_toEndOf="@+id/CreateAccount"
         app:layout_constraintHorizontal_bias="0.312"
-        app:layout_constraintStart_toStartOf="@+id/LoginButton"
-        app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
+        app:layout_constraintStart_toStartOf="@+id/CreateAccount"
+        app:layout_constraintTop_toBottomOf="@+id/CreateAccount" />
 
     <TextView
         android:id="@+id/textView5"
