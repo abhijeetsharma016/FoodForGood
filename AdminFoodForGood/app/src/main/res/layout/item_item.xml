@@ -7,6 +7,8 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +46,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/foodNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/yeonsungregular"
@@ -56,7 +58,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/priceTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16sp"
@@ -68,32 +70,32 @@
                 app:layout_constraintStart_toEndOf="@+id/cardView8" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/minusButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="transparent"
+                android:background="@color/transparent"
                 android:src="@drawable/minus_button"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView15"
-                app:layout_constraintEnd_toStartOf="@+id/textView15"
-                app:layout_constraintTop_toTopOf="@+id/textView15"
+                app:layout_constraintBottom_toBottomOf="@+id/quantityTextView"
+                app:layout_constraintEnd_toStartOf="@+id/quantityTextView"
+                app:layout_constraintTop_toTopOf="@+id/quantityTextView"
                 app:layout_constraintVertical_bias="0.428" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/quantityTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-                app:layout_constraintTop_toTopOf="@+id/imageButton2" />
+                app:layout_constraintBottom_toBottomOf="@+id/plusButton"
+                app:layout_constraintEnd_toStartOf="@+id/plusButton"
+                app:layout_constraintTop_toTopOf="@+id/plusButton" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/plusButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="transparent"
+                android:background="@color/transparent"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/plus_button"
@@ -101,17 +103,17 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
+                android:id="@+id/deleteButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
-                android:background="transparent"
-
+                android:background="@color/transparent"
                 android:src="@drawable/trash_button"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-                app:layout_constraintStart_toStartOf="@+id/imageButton"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+                app:layout_constraintEnd_toEndOf="@+id/plusButton"
+                app:layout_constraintStart_toStartOf="@+id/minusButton"
+                app:layout_constraintTop_toBottomOf="@+id/minusButton" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

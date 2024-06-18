@@ -9,4 +9,5 @@
     <color name="endcolor">#15BE77</color>
     <color name="red">#B51408</color>
     <color name="golden">#DCBE02</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
