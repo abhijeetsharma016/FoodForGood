@@ -1,20 +1,28 @@
 package com.example.adminfoodforgood
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.adminfoodforgood.adapter.PendingOrderAdapter
+import com.example.adminfoodforgood.databinding.ActivityPendingOrderBinding
 
 class pendingOrderActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityPendingOrderBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_pending_order)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding = ActivityPendingOrderBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.backButton.setOnClickListener{
+            finish()
         }
+        val OrderCustomerName = arrayListOf("John Doe", "Jane Smith", "Michael Johnson")
+        val quantity = arrayListOf("8", "6", "5")
+        val orderFoodImage = arrayListOf(R.drawable.menu1, R.drawable.menu2, R.drawable.menu3)
+
+
+        val adapter = PendingOrderAdapter(OrderCustomerName, quantity, orderFoodImage, context = this)
+        binding.pendingOrderRecyclerView.adapter = adapter
+        binding.pendingOrderRecyclerView.layoutManager = LinearLayoutManager(this)
     }
 }

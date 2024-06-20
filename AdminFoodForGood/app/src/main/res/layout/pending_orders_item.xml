@@ -72,7 +72,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/customerName" />
 
             <TextView
-                android:id="@+id/priceTextView"
+                android:id="@+id/pendingOrderQuentity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/yeonsungregular"
@@ -84,7 +84,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textView14" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/deleteButton"
+                android:id="@+id/orderAcceptButton"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="Accept"
