@@ -15,7 +15,9 @@ class outForDeliveryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
-
+        binding.backButton.setOnClickListener{
+            finish()
+        }
         val customerName = arrayListOf("John Doe", "Jane Smith", "Michael Johnson")
         val moneyStatus = arrayListOf("received", "notReceived", "pending")
 
