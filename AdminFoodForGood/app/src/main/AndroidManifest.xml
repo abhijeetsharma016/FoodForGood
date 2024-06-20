@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AdminFoodForGood"
         tools:targetApi="31">
         <activity
+            android:name=".pendingOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".createUserActivity"
             android:exported="false" />
         <activity
