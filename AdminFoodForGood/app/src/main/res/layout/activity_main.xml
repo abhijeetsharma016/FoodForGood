@@ -229,9 +229,9 @@
         android:outlineAmbientShadowColor="@color/textcolor"
         app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/outForDeliveryButton"
-        app:layout_constraintEnd_toEndOf="@+id/cardView6"
+        app:layout_constraintEnd_toEndOf="@+id/createNewUser"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/cardView6"
+        app:layout_constraintStart_toStartOf="@+id/createNewUser"
         app:layout_constraintTop_toTopOf="@+id/outForDeliveryButton"
         app:layout_constraintVertical_bias="0.0">        <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -304,7 +304,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView6"
+        android:id="@+id/createNewUser"
         android:layout_width="150dp"
         android:layout_height="85dp"
         android:outlineAmbientShadowColor="@color/textcolor"

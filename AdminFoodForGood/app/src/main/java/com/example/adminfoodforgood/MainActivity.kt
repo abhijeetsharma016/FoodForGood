@@ -33,5 +33,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,adminProfileActivity::class.java)
             startActivity(intent)
         }
+        binding.createNewUser.setOnClickListener{
+            val intent = Intent(this,createUserActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
