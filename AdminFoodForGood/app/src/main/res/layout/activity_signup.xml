@@ -88,7 +88,7 @@
 
 
     <EditText
-        android:id="@+id/Username"
+        android:id="@+id/username"
         android:layout_width="0dp"
         android:layout_height="57dp"
         android:layout_marginLeft="20dp"
@@ -110,7 +110,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <EditText
-        android:id="@+id/RestorentName"
+        android:id="@+id/restorentName"
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:layout_marginLeft="20dp"
@@ -126,12 +126,12 @@
         android:paddingLeft="15dp"
         android:shadowColor="@color/textcolor"
         android:textColorHint="@color/grey"
-        app:layout_constraintEnd_toEndOf="@+id/Username"
-        app:layout_constraintStart_toStartOf="@+id/Username"
-        app:layout_constraintTop_toBottomOf="@+id/Username" />
+        app:layout_constraintEnd_toEndOf="@+id/username"
+        app:layout_constraintStart_toStartOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <EditText
-        android:id="@+id/EmailOrPhone"
+        android:id="@+id/emailOrPhone"
         android:layout_width="0dp"
         android:layout_height="57dp"
         android:layout_marginTop="12dp"
@@ -144,9 +144,9 @@
         android:inputType="textEmailAddress"
         android:paddingLeft="15dp"
         android:textColorHint="@color/grey"
-        app:layout_constraintEnd_toEndOf="@+id/RestorentName"
-        app:layout_constraintStart_toStartOf="@+id/RestorentName"
-        app:layout_constraintTop_toBottomOf="@+id/RestorentName" />
+        app:layout_constraintEnd_toEndOf="@+id/restorentName"
+        app:layout_constraintStart_toStartOf="@+id/restorentName"
+        app:layout_constraintTop_toBottomOf="@+id/restorentName" />
 
     <EditText
         android:id="@+id/password"
@@ -162,12 +162,12 @@
         android:inputType="textPassword"
         android:paddingLeft="15dp"
         android:textColorHint="@color/grey"
-        app:layout_constraintEnd_toEndOf="@+id/EmailOrPhone"
-        app:layout_constraintStart_toStartOf="@+id/EmailOrPhone"
-        app:layout_constraintTop_toBottomOf="@+id/EmailOrPhone" />
+        app:layout_constraintEnd_toEndOf="@+id/emailOrPhone"
+        app:layout_constraintStart_toStartOf="@+id/emailOrPhone"
+        app:layout_constraintTop_toBottomOf="@+id/emailOrPhone" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/CreateAccount"
+        android:id="@+id/createAccount"
         android:layout_width="157dp"
         android:layout_height="57dp"
         android:layout_marginTop="12dp"
@@ -190,10 +190,10 @@
         android:fontFamily="@font/latobold"
         android:text="Already have an account?"
         android:textColor="@color/textcolor"
-        app:layout_constraintEnd_toEndOf="@+id/CreateAccount"
+        app:layout_constraintEnd_toEndOf="@+id/createAccount"
         app:layout_constraintHorizontal_bias="0.312"
-        app:layout_constraintStart_toStartOf="@+id/CreateAccount"
-        app:layout_constraintTop_toBottomOf="@+id/CreateAccount" />
+        app:layout_constraintStart_toStartOf="@+id/createAccount"
+        app:layout_constraintTop_toBottomOf="@+id/createAccount" />
 
     <TextView
         android:id="@+id/textView5"

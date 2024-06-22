@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "255110714064",
+    "project_id": "food-for-good-9b045",
+    "storage_bucket": "food-for-good-9b045.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255110714064:android:2d43d96586636148d084d5",
+        "android_client_info": {
+          "package_name": "com.example.adminfoodforgood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAclMnkOMNgq3OBXqrs7149dHWWBL4kkzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
