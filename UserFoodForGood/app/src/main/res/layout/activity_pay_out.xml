@@ -216,9 +216,9 @@ for previewing layouts and visual "
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/edittextshape"
+        android:background="@drawable/greenbutton"
         android:fontFamily="@font/yeonsungregular"
         android:text="Place My Order"
         android:textAllCaps="false"
-        android:textColor="@color/textColor" />
+        android:textColor="@color/white" />
 </FrameLayout>
