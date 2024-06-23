@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Admin Food For Good</string>
+    <string name="default_web_client_id">"255110714064-jba0ci1hiedkoe9irejrbbqe6vgg2cvt.apps.googleusercontent.com"</string>
+
 </resources>

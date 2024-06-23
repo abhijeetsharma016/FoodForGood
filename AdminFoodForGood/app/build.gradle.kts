@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
+    implementation("com.google.android.gms:play-services-auth:19.2.0")
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
