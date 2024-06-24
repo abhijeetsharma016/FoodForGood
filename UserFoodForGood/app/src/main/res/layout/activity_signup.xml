@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/userName"
         android:layout_width="325dp"
         android:layout_height="57dp"
         android:layout_marginTop="16dp"
@@ -87,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress2"
+        android:id="@+id/emailAddress"
         android:layout_width="325dp"
         android:layout_height="57dp"
         android:layout_marginTop="12dp"
@@ -100,12 +100,12 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:paddingLeft="15dp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText"
-        app:layout_constraintStart_toStartOf="@+id/editTextText"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintEnd_toEndOf="@+id/userName"
+        app:layout_constraintStart_toStartOf="@+id/userName"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/password"
         android:layout_width="325dp"
         android:layout_height="57dp"
         android:layout_marginTop="12dp"
@@ -120,7 +120,7 @@
         android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+        app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
 
     <TextView
         android:id="@+id/textView17"
@@ -129,7 +129,7 @@
         android:text="or"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <TextView
         android:id="@+id/textView18"
@@ -144,7 +144,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button4"
+        android:id="@+id/googleSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -155,13 +155,13 @@
         android:fontFamily="@font/latoregular"
         android:paddingLeft="15dp"
         android:text="Google"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintEnd_toStartOf="@+id/facebookButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button5"
+        android:id="@+id/facebookButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -174,11 +174,11 @@
         android:text="Facebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintStart_toEndOf="@+id/googleSignIn"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button6"
+        android:id="@+id/createAccountButton"
         android:layout_width="157dp"
         android:layout_height="57dp"
         android:layout_marginTop="16dp"
@@ -191,7 +191,7 @@
         app:layout_constraintBottom_toTopOf="@+id/alreadyhaveaccountbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/facebookButton" />
 
     <TextView
         android:id="@+id/alreadyhaveaccountbutton"

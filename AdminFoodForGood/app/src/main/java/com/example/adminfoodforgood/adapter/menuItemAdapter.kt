@@ -48,7 +48,7 @@ class menuItemAdapter(
                 Glide.with(context)
                     .load(uri)
                     .override(200, 200) // resize to 200x200
-                    .into(foodImageView)
+                    .into(foodImageView) // glide is used to load the image from firebase in speed
 
                 quantityTextView.text = quantity.toString()
                 minusButton.setOnClickListener {
