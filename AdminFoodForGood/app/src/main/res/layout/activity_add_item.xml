@@ -148,10 +148,7 @@
                 android:layout_marginEnd="153dp"
                 android:background="@color/white"
                 android:fontFamily="@font/latoregular"
-                android:text="Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua. Ut enim ad "
+                android:hint="Pls Add food description here\n\n\n"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/textView13"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -182,7 +179,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@color/white"
                 android:fontFamily="@font/latoregular"
-                android:text="Noddle \n Salad \n Burger \nHerbal Pan Cake \n Momos"
+                android:hint="Pls Add ingredients here \n\n\n"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/textView16"
                 app:layout_constraintHorizontal_bias="0.388"

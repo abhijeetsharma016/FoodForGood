@@ -1,32 +1,75 @@
 package com.example.adminfoodforgood
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.adminfoodforgood.adapter.addItemAdapter
+import com.example.adminfoodforgood.adapter.menuItemAdapter
 import com.example.adminfoodforgood.databinding.ActivityAllItemBinding
+import com.example.adminfoodforgood.model.AllMenu
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.util.ArrayList
+import kotlin.math.log
 
 class allItemActivity : AppCompatActivity() {
-    private val binding: ActivityAllItemBinding by lazy { ActivityAllItemBinding.inflate(layoutInflater) }
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var database: FirebaseDatabase
+    private var menuItem: ArrayList<AllMenu> = ArrayList()
+    private val binding: ActivityAllItemBinding by lazy {
+        ActivityAllItemBinding.inflate(
+            layoutInflater
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        val menuFoodName = listOf("Burger", "Sandwich", "Momo", "Burger", "Sandwich", "Momo")
-        val menuItemPrice = listOf("$5", "$6", "$8", "$9", "$10", "$10")
-        val menuImage = listOf(R.drawable.menu1, R.drawable.menu2, R.drawable.menu4, R.drawable.menu3, R.drawable.menu5, R.drawable.menu3)
+        databaseReference = FirebaseDatabase.getInstance().reference
+        retrieveMenuItem()
 
-        binding.backButton.setOnClickListener{
+
+        binding.backButton.setOnClickListener {
             finish()
         }
-        val adapter = addItemAdapter(ArrayList(menuFoodName), ArrayList(menuItemPrice), ArrayList(menuImage))
 
+
+    }
+
+    private fun retrieveMenuItem() {
+        database = FirebaseDatabase.getInstance()
+        val foodRef = database.reference.child("menu")
+
+        //fetch data from database
+        foodRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //clear existing data before populating
+                menuItem.clear()
+
+                //loop for through each item in database
+                for (foodSnapshot in snapshot.children) {
+                    val menuItems = foodSnapshot.getValue(AllMenu::class.java)
+                    menuItems?.let { menuItem.add(it) }
+                }
+
+                setAdapter()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("Database Error:", "Error: ${error.message}")
+            }
+        })
+
+    }
+
+    private fun setAdapter() {
+        val adapter =
+            menuItemAdapter(this@allItemActivity, menuItem, databaseReference)
         binding.menuRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.menuRecyclerView.adapter = adapter
+
     }
 }
