@@ -52,6 +52,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "255110714064-uno9gjm0jtufuvdhrg0q7qoo6ks2qrrh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodforgood",
+            "certificate_hash": "62fda9ed09cb76e398d5f72171737913900a4cec"
+          }
+        },
+        {
           "client_id": "255110714064-jba0ci1hiedkoe9irejrbbqe6vgg2cvt.apps.googleusercontent.com",
           "client_type": 3
         }
