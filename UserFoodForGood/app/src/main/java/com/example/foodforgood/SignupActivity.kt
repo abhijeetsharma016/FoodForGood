@@ -86,6 +86,7 @@ class SignupActivity : AppCompatActivity() {
                     val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
                     auth.signInWithCredential(credential).addOnCompleteListener{task->
                         if(task.isSuccessful){
+                            Toast.makeText(this, "Signin Successful 😋", Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this, MainActivity::class.java))
                             finish()
                         }
@@ -111,7 +112,7 @@ class SignupActivity : AppCompatActivity() {
                         startActivity(Intent(this, LoginActivity::class.java))
                         finish()
                     } else {
-                        Toast.makeText(this, "Failed to create account", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Failed to create account ", Toast.LENGTH_SHORT).show()
                         Log.d("Account", "createUserWithEmail:failure", task.exception)
                     }
                 }
