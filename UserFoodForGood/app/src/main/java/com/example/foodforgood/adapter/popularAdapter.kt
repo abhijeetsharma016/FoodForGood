@@ -5,9 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
-import com.example.foodforgood.DetailsActiviry
-import com.example.foodforgood.databinding.FragmentHomeBinding
+import com.example.foodforgood.DetailsActivity
 import com.example.foodforgood.databinding.PopularItemBinding
 
 class popularAdapter(private var items:List<String>,private val price:List<String>, private val image: List<Int>, private val requireContext: Context): RecyclerView.Adapter<popularAdapter.PopularViewHolder>() {
@@ -25,7 +23,7 @@ class popularAdapter(private var items:List<String>,private val price:List<Strin
         holder.bind(item, price, images)
 
         holder.itemView.setOnClickListener{
-            val intent = Intent(requireContext, DetailsActiviry::class.java)
+            val intent = Intent(requireContext, DetailsActivity::class.java)
             intent.putExtra("MenuItemName", item)
             intent.putExtra("MenuItemImage", images)
             requireContext.startActivity(intent)

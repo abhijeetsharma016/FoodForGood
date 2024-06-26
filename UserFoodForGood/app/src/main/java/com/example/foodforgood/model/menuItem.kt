@@ -5,5 +5,5 @@ data class menuItem(
     val foodPrice:String? = null,
     val foodDescription:String? = null,
     val foodImage:String? = null,
-    val foodIngredients:String? = null
+    val foodIngredient:String? = null
 )
