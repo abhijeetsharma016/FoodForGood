@@ -3,6 +3,7 @@ package com.example.foodforgood.Fragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -11,17 +12,19 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.foodforgood.R
-import com.example.foodforgood.adapter.popularAdapter
+import com.example.foodforgood.adapter.menuAdapter
 import com.example.foodforgood.databinding.FragmentHomeBinding
+import com.example.foodforgood.model.menuItem
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var database: FirebaseDatabase
+    private lateinit var menuItems: MutableList<menuItem>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -31,13 +34,63 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater,container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.viewAllMenu.setOnClickListener{
+        binding.viewAllMenu.setOnClickListener {
             val bottomSheetDialog = menuBottomSheet()
             bottomSheetDialog.show(parentFragmentManager, "Test")
         }
+
+        //Retrieve popular menu item
+        retrieveAndDisplayPopularItems()
         return binding.root
+    }
+
+
+    private fun retrieveAndDisplayPopularItems() {
+        //get reference to the database
+        database = FirebaseDatabase.getInstance()
+        val foodRef: DatabaseReference = database.reference.child("menu")
+        menuItems = mutableListOf<menuItem>() // Use menuItem instead of MenuItem
+
+
+        //retrieve menu items from the database
+        foodRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (foodSnapshot in snapshot.children) {
+                    val menuItem =
+                        foodSnapshot.getValue(menuItem::class.java) // Use menuItem instead of MenuItem
+                    menuItem?.let {
+                        menuItems.add(it)
+                    }
+                    //display random popular items
+                    randomPopularItems()
+
+                }
+
+            }
+
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    private fun randomPopularItems() {
+        //create shuffled list of menu items
+        val index = menuItems.indices.toList().shuffled()
+        val numItemToShow = 6
+        val subsetMenuItem = index.take(numItemToShow).map { menuItems[it] }
+
+        setPopularItemsAdapter(subsetMenuItem)
+    }
+
+    private fun setPopularItemsAdapter(subsetMenuItem: List<menuItem>) { // Use menuItem instead of MenuItem
+        val adapter = menuAdapter(subsetMenuItem, requireContext())
+        binding.PopularRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.PopularRecyclerView.adapter = adapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,8 +103,8 @@ class HomeFragment : Fragment() {
 
         val imageSlider = binding.imageSlider
         imageSlider.setImageList(imageList)
-        imageSlider.setImageList(imageList,ScaleTypes.FIT)
-        imageSlider.setItemClickListener(object :ItemClickListener{
+        imageSlider.setImageList(imageList, ScaleTypes.FIT)
+        imageSlider.setItemClickListener(object : ItemClickListener {
             override fun doubleClick(position: Int) {
                 TODO("Not yet implemented")
             }
@@ -63,16 +116,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-        val foodName = listOf("Burger", "Sandwich", "momo", "item")
-        val Price = listOf("$5", "$7", "$8", "$10")
-        val popularFoodImages = listOf(R.drawable.menu1, R.drawable.menu2, R.drawable.menu3, R.drawable.menu5)
-
-        val adapter = popularAdapter(foodName, Price,popularFoodImages, requireContext())
-        binding.PopularRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.PopularRecyclerView.adapter = adapter
-    }
-
-    companion object {
 
     }
 }
