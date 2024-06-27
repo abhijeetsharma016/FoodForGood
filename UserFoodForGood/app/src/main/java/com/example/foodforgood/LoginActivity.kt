@@ -33,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
     private val binding: ActivityLoginBinding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -49,42 +50,40 @@ class LoginActivity : AppCompatActivity() {
         googleSignIn = GoogleSignIn.getClient(this, googleSignInOptions)
 
         //Login With email and password
-        binding.loginButton.setOnClickListener{
+        binding.loginButton.setOnClickListener {
 
             //get Data from text fields
             email = binding.loginEmailAddress.text.toString().trim()
             password = binding.loginPassword.text.toString().trim()
 
-            if(email.isBlank() || password.isBlank()){
+            if (email.isBlank() || password.isBlank()) {
                 Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show()
-            }
-            else{
+            } else {
                 createUser()
             }
         }
-        binding.donthaveaccountbutton.setOnClickListener{
-            val intent = Intent(this,SignupActivity::class.java)
+        binding.donthaveaccountbutton.setOnClickListener {
+            val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
 
     }
 
-    private fun createUser(){
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{task->
-            if(task.isSuccessful){
-             val user =  auth.currentUser
+    private fun createUser() {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val user = auth.currentUser
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
                 updateUI(user)
-            }else{
+            } else {
                 Log.d("Account", "createUserWithEmail:failure", task.exception)
-                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{task->
-                    if(task.isSuccessful){
+                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
                         Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT).show()
                         saveUserData()
-                        val user =  auth.currentUser
+                        val user = auth.currentUser
                         updateUI(user)
-                    }
-                    else{
+                    } else {
                         Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
                         Log.d("Account", "createUserWithEmail:failure", task.exception)
                     }
@@ -102,18 +101,19 @@ class LoginActivity : AppCompatActivity() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
 
         //save user data to database
-        database.child("users").child(userId).setValue(user)
+        database.child("user").child(userId).setValue(user)
     }
 
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
-        if(currentUser!= null){
+        if (currentUser != null) {
             updateUI(currentUser)
         }
     }
+
     private fun updateUI(user: FirebaseUser?) {
-        val intent = Intent(this,MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
