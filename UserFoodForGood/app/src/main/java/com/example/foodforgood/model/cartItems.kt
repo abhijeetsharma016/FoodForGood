@@ -5,5 +5,6 @@ data class cartItems(
     var foodPrice: String ?= null,
     var foodDescription: String ?= null,
     var foodImage: String ?= null,
-    var foodQuantity: Int ?= null
-        )
+    var foodQuantity: Int ?= null,
+    var foodIngredient: String ?= null
+)

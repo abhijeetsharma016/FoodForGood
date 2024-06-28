@@ -6,16 +6,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodforgood.PayOutActivity
-import com.example.foodforgood.R
 import com.example.foodforgood.adapter.cartAdapter
-import com.example.foodforgood.databinding.CartItemBinding
 import com.example.foodforgood.databinding.FragmentCartBinding
+import com.example.foodforgood.model.cartItems
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class cartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
+    private lateinit var database: FirebaseDatabase
+    private lateinit var foodName: MutableList<String>
+    private lateinit var foodImageUri: MutableList<String>
+    private lateinit var foodDescription: MutableList<String>
+    private lateinit var foodIngredient: MutableList<String>
+    private lateinit var foodPrice: MutableList<String>
+    private lateinit var quantity: MutableList<Int>
+    private lateinit var auth: FirebaseAuth
+    private lateinit var cartAdapter: cartAdapter
+    private lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,27 +44,63 @@ class cartFragment : Fragment() {
     ): View? {
         binding = FragmentCartBinding.inflate(inflater, container, false)
 
-        val cartFoodName = listOf("Burger", "sandwich", "momo", "item", "sandwich", "momo")
-        val cartItemPrice = listOf("$5", "$6", "$8", "$9", "$10", "$11")
-        val cartImage = listOf(
-            R.drawable.menu1,
-            R.drawable.menu2,
-            R.drawable.menu3,
-            R.drawable.menu4,
-            R.drawable.menu5,
-            R.drawable.menu2
-        )
+        auth = FirebaseAuth.getInstance()
+        restiveCardItems()
 
-        val adapter = cartAdapter(ArrayList(cartFoodName), ArrayList(cartItemPrice), ArrayList(cartImage))
-        binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.cartRecyclerView.adapter = adapter
-        binding.cartProceedButton
+
 
         binding.cartProceedButton.setOnClickListener{
             val intent = Intent(requireContext(), PayOutActivity::class.java)
             startActivity(intent)
         }
         return binding.root
+    }
+
+    private fun restiveCardItems() {
+        //database reference to the database
+        database = FirebaseDatabase.getInstance()
+        userId = auth.currentUser?.uid?:""
+        val foodRef: DatabaseReference = database.reference.child("user").child(userId).child("cartItems")
+
+        //cart Items
+        foodName = mutableListOf()
+        foodPrice = mutableListOf()
+        foodDescription = mutableListOf()
+        foodIngredient = mutableListOf()
+        foodImageUri = mutableListOf()
+        quantity = mutableListOf()
+
+        // fetch data from the database
+        foodRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (foodSnapshot in snapshot.children) {
+
+                    //get the cart items object from child node
+                    val cartItems = foodSnapshot.getValue(cartItems::class.java)
+
+                    //add the data to the list
+                    cartItems?.foodName?.let { foodName.add(it) }
+                    cartItems?.foodPrice?.let { foodPrice.add(it) }
+                    cartItems?.foodDescription?.let { foodDescription.add(it) }
+                    cartItems?.foodImage?.let { foodImageUri.add(it) }
+                    cartItems?.foodQuantity?.let { quantity.add(it) }
+                    cartItems?.foodIngredient?.let { foodIngredient.add(it) }
+                }
+                setAdapter()
+            }
+
+            private fun setAdapter() {
+                val adapter = cartAdapter(requireContext(), foodName, foodPrice,foodImageUri, foodDescription, quantity, foodIngredient, )
+                binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                binding.cartRecyclerView.adapter = adapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context, "data not fetched", Toast.LENGTH_SHORT).show()
+
+            }
+
+        })
     }
 
     companion object {
