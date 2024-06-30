@@ -1,18 +1,12 @@
 package com.example.foodforgood.adapter
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.example.foodforgood.databinding.CartItemBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -60,6 +54,13 @@ class cartAdapter(
     }
 
     override fun getItemCount(): Int = CartItems.size
+
+    //getUpdated quantity
+    fun getItemQuantity(): MutableList<Int> {
+        val itemQuantity = mutableListOf<Int>()
+        itemQuantity.addAll(cartQuantity)
+        return itemQuantity
+    }
 
 
     inner class CartViewHolder(private val binding: CartItemBinding) :

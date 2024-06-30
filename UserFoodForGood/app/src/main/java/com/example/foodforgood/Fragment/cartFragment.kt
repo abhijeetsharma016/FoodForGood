@@ -36,7 +36,7 @@ class cartFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,18 +49,85 @@ class cartFragment : Fragment() {
 
 
 
-        binding.cartProceedButton.setOnClickListener{
+        binding.cartProceedButton.setOnClickListener {
+            //get item details before proceeding
+            getOrderedDetails()
             val intent = Intent(requireContext(), PayOutActivity::class.java)
             startActivity(intent)
         }
         return binding.root
     }
 
+    private fun orderNow(
+        foodName: MutableList<String>,
+        foodPrice: MutableList<String>,
+        foodImage: MutableList<String>,
+        foodDescription: MutableList<String>,
+        foodIngredient: MutableList<String>,
+        foodQuantity: MutableList<Int>
+    ) {
+        if (isAdded && context != null) {
+            val intent = Intent(requireContext(), PayOutActivity::class.java)
+            intent.putExtra("fooItemName", foodName as ArrayList<String>)
+            intent.putExtra("fooItemPrice", foodPrice as ArrayList<String>)
+            intent.putExtra("fooItemImage", foodImage as ArrayList<String>)
+            intent.putExtra("fooItemDescription", foodDescription as ArrayList<String>)
+            intent.putExtra("fooItemIngredient", foodIngredient as ArrayList<String>)
+            intent.putExtra("fooItemQuantity", foodQuantity as ArrayList<Int>)
+            startActivity(intent)
+        }
+    }
+
+    private fun getOrderedDetails() {
+        val orderIdReference: DatabaseReference =
+            database.reference.child("user").child(userId).child("cartItems")
+        val foodName = mutableListOf<String>()
+        val foodPrice = mutableListOf<String>()
+        val foodImage = mutableListOf<String>()
+        val foodDescription = mutableListOf<String>()
+        val foodIngredient = mutableListOf<String>()
+
+        //get items quantity
+        val foodQuantity = cartAdapter.getItemQuantity()
+        orderIdReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (foodSnapshot in snapshot.children) {
+                    //get the cart items object from child node
+                    val orderItems = foodSnapshot.getValue(cartItems::class.java)
+                    //add the data to the list
+                    orderItems?.foodName?.let { foodName.add(it) }
+                    orderItems?.foodPrice?.let { foodPrice.add(it) }
+                    orderItems?.foodImage?.let { foodImage.add(it) }
+                    orderItems?.foodDescription?.let { foodDescription.add(it) }
+                    orderItems?.foodIngredient?.let { foodIngredient.add(it) }
+                }
+                orderNow(
+                    foodName,
+                    foodPrice,
+                    foodImage,
+                    foodDescription,
+                    foodIngredient,
+                    foodQuantity
+                )
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(
+                    requireContext(),
+                    "Order making failed pls try again later",
+                    Toast.LENGTH_SHORT
+                )
+            }
+        })
+    }
+
     private fun restiveCardItems() {
         //database reference to the database
         database = FirebaseDatabase.getInstance()
-        userId = auth.currentUser?.uid?:""
-        val foodRef: DatabaseReference = database.reference.child("user").child(userId).child("cartItems")
+        userId = auth.currentUser?.uid ?: ""
+        val foodRef: DatabaseReference =
+            database.reference.child("user").child(userId).child("cartItems")
 
         //cart Items
         foodName = mutableListOf()
@@ -90,14 +157,22 @@ class cartFragment : Fragment() {
             }
 
             private fun setAdapter() {
-                val adapter = cartAdapter(requireContext(), foodName, foodPrice,foodImageUri, foodDescription, quantity, foodIngredient, )
-                binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                val adapter = cartAdapter(
+                    requireContext(),
+                    foodName,
+                    foodPrice,
+                    foodImageUri,
+                    foodDescription,
+                    quantity,
+                    foodIngredient,
+                )
+                binding.cartRecyclerView.layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 binding.cartRecyclerView.adapter = adapter
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(context, "data not fetched", Toast.LENGTH_SHORT).show()
-
             }
 
         })
