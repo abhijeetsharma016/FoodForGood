@@ -124,19 +124,19 @@ class cartAdapter(
         private fun decreaseQuantity(position: Int) {
             if (itemQuantity[position] > 1) {
                 itemQuantity[position]--
+                cartQuantity[position] = itemQuantity[position]
+                binding.cartItemQuentity.text = itemQuantity[position].toString()
+            }
+        }
+        private fun increaseQuantity(position: Int) {
+            if (itemQuantity[position] < 10) {
+                itemQuantity[position]++
+                cartQuantity[position] = itemQuantity[position]
                 binding.cartItemQuentity.text = itemQuantity[position].toString()
             }
         }
 
         private fun deleteItem(position: Int) {
-            CartItems.removeAt(position)
-            CartImages.removeAt(position)
-            CartItemPrices.removeAt(position)
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, CartItems.size)
-        }
-
-        private fun increaseQuantity(position: Int) {
             val positionRetrieve = position
             getUniqueKeyAtPosition(positionRetrieve){uniqueKey ->
                 if(uniqueKey != null){
@@ -146,19 +146,32 @@ class cartAdapter(
         }
 
         private fun removeItem(position: Int, uniqueKey: String) {
-            if(uniqueKey != null){
+            if(uniqueKey!= null){
                 cartItemsReference.child(uniqueKey).removeValue().addOnSuccessListener {
-                    CartItems.removeAt(position)
-                    CartImages.removeAt(position)
-                    cartDescriptions.removeAt(position)
-                    cartQuantity.removeAt(position)
-                    cartIngredients.removeAt(position)
-                    CartItemPrices.removeAt(position)
-                    Toast.makeText(context, "Failed to delete item", Toast.LENGTH_SHORT).show()
-                    //update itemquentities
-                    itemQuantity = itemQuantity.filterIndexed {index, i -> index != position}.toIntArray()
+                    if (position < CartItems.size) {
+                        CartItems.removeAt(position)
+                    }
+                    if (position < CartImages.size) {
+                        CartImages.removeAt(position)
+                    }
+                    if (position < cartDescriptions.size) {
+                        cartDescriptions.removeAt(position)
+                    }
+                    if (position < cartQuantity.size) {
+                        cartQuantity.removeAt(position)
+                    }
+                    if (position < cartIngredients.size) {
+                        cartIngredients.removeAt(position)
+                    }
+                    if (position < CartItemPrices.size) {
+                        CartItemPrices.removeAt(position)
+                    }
+                    Toast.makeText(context, "item deleted successfully", Toast.LENGTH_SHORT).show()
+                    //update item quantities
+                    itemQuantity = itemQuantity.filterIndexed {index, i -> index!= position}.toIntArray()
                     notifyItemRemoved(position)
                     notifyItemRangeChanged(position, CartItems.size)
+                    notifyDataSetChanged()
                 }.addOnFailureListener{
                     Toast.makeText(context, "Failed to delete item", Toast.LENGTH_SHORT).show()
                 }
