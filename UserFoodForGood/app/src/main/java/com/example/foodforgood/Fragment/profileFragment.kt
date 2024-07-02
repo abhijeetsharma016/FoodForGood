@@ -52,7 +52,8 @@ class profileFragment : Fragment() {
         if (userid != null) {
             val userRef = firebaseDatabase.getReference("user").child(userid)
 
-            val userData =hashMapOf("name" to name,
+            val userData =hashMapOf(
+                "name" to name,
                 "email" to email,
                 "phone" to phone,
                 "address" to address
@@ -78,6 +79,7 @@ class profileFragment : Fragment() {
                         if (userProfile != null) {
                             binding.name.setText(userProfile.name)
                             binding.email.setText(userProfile.email)
+                            binding.address.setText(userProfile.address)
                             binding.phone.setText(userProfile.phone)
                         }
                     }
