@@ -9,25 +9,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.foodforgood.R
 import com.example.foodforgood.adapter.BuyAgainAdapter
 import com.example.foodforgood.databinding.FragmentHistoryBinding
 import com.example.foodforgood.model.OrderDetails
+import com.example.foodforgood.recentOrderItems
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-
+import java.io.Serializable
 
 class historyFragment : Fragment() {
     private lateinit var binding: FragmentHistoryBinding
     private lateinit var buyAgainAdapter: BuyAgainAdapter
-    private lateinit var databse: FirebaseDatabase
+    private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
     private lateinit var userId: String
-    private var listOfOrderItems: MutableList<OrderDetails> = mutableListOf()
+    private var listOfOrderItems: ArrayList<OrderDetails> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,30 +42,38 @@ class historyFragment : Fragment() {
     ): View? {
         binding = FragmentHistoryBinding.inflate(layoutInflater, container, false)
         auth = FirebaseAuth.getInstance()
-        databse = FirebaseDatabase.getInstance()
+        database = FirebaseDatabase.getInstance()
 
-        //Retrieve and display data from firebase
-        restiveByHistory()
+        // Retrieve and display data from firebase
+        restiveBuyHistory()
 
-        binding.recentBuyItem.setOnClickListener{
+
+        //button to open recent buy activity(when clicked on the recent buy item in history)
+        binding.recentBuyItem.setOnClickListener {
             seeItemsRecentBuy()
         }
+
         // Inflate the layout for this fragment
-        //setupRecyclerView()
+        // setupRecyclerView()
         return binding.root
     }
 
+    //fun to see items in recent buy
     private fun seeItemsRecentBuy() {
-        listOfOrderItems.firstOrNull()?.let {recentItem ->
-            val intent = Intent(requireContext(), RecentBuyActivity::class.java)
+        listOfOrderItems.firstOrNull()?.let { recentItem ->
+            val intent = Intent(requireContext(), recentOrderItems::class.java)
+            intent.putExtra("recentItem", listOfOrderItems)
+            startActivity(intent)
+        }
     }
 
-    private fun restiveByHistory() {
+    //fun to retrieve data from firebase in buyHistory
+    private fun restiveBuyHistory() {
         binding.recentBuyItem.visibility = View.INVISIBLE
         userId = auth.currentUser?.uid ?: ""
 
         val buyItemReference: DatabaseReference =
-            databse.reference.child("user").child(userId).child("BuyHistory")
+            database.reference.child("user").child(userId).child("BuyHistory")
         val sortQuery = buyItemReference.orderByChild("currentTime")
 
         sortQuery.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -78,7 +86,10 @@ class historyFragment : Fragment() {
                 }
                 listOfOrderItems.reverse()
                 if (listOfOrderItems.isNotEmpty()) {
+                    //display the most recent order details
                     setDataInRecentBuyItem()
+
+                    //setup the recycler view with prev order details
                     setPrevBuyItemRecyclerView()
                 }
             }
@@ -87,6 +98,7 @@ class historyFragment : Fragment() {
                 TODO("Not yet implemented")
             }
 
+            //fun to set the recent orders details in recycler view
             private fun setDataInRecentBuyItem() {
                 binding.recentBuyItem.visibility = View.VISIBLE
                 val recentOrderItems = listOfOrderItems.firstOrNull()
@@ -109,12 +121,13 @@ class historyFragment : Fragment() {
         })
     }
 
+    //fun to display the most recent order details
     private fun setPrevBuyItemRecyclerView() {
         val buyAgainFoodName = mutableListOf<String>()
         val buyAgainFoodPrice = mutableListOf<String>()
         val buyAgainFoodImage = mutableListOf<String>()
 
-        for (i in 0 until listOfOrderItems.size-1) {
+        for (i in 0 until listOfOrderItems.size - 1) {
             listOfOrderItems[i].foodNames?.firstOrNull()?.let {
                 buyAgainFoodName.add(it)
                 listOfOrderItems[i].foodPrices?.firstOrNull()?.let {

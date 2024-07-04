@@ -125,7 +125,7 @@ class PayOutActivity : AppCompatActivity() {
             val priceIntValue = if (lastChar == '$') {
                 price.dropLast(1).toInt()
             } else {
-                price.toInt()
+                price.trim().toInt()
             }
             var quantity = fooItemQuantity[i]
             totalAmount += priceIntValue * quantity
