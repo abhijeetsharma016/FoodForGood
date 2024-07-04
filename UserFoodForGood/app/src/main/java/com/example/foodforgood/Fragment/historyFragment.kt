@@ -1,5 +1,6 @@
 package com.example.foodforgood.Fragment
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -46,9 +47,17 @@ class historyFragment : Fragment() {
         //Retrieve and display data from firebase
         restiveByHistory()
 
+        binding.recentBuyItem.setOnClickListener{
+            seeItemsRecentBuy()
+        }
         // Inflate the layout for this fragment
         //setupRecyclerView()
         return binding.root
+    }
+
+    private fun seeItemsRecentBuy() {
+        listOfOrderItems.firstOrNull()?.let {recentItem ->
+            val intent = Intent(requireContext(), RecentBuyActivity::class.java)
     }
 
     private fun restiveByHistory() {
