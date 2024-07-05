@@ -34,6 +34,26 @@ class profileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         setUserData()
+        binding.editButton.setOnClickListener {
+
+        }
+        binding.name.isEnabled = false
+        binding.address.isEnabled = false
+        binding.phone.isEnabled = false
+        binding.email.isEnabled = false
+
+        var isEnable = false
+        binding.editButton.setOnClickListener {
+            isEnable = !isEnable
+            binding.name.isEnabled = isEnable
+            binding.address.isEnabled = isEnable
+            binding.phone.isEnabled = isEnable
+            binding.email.isEnabled = isEnable
+
+            if (isEnable) {
+                binding.name.requestFocus()
+            }
+        }
         binding.saveInfoButton.setOnClickListener {
             val name = binding.name.text.toString()
             val email = binding.email.text.toString()
