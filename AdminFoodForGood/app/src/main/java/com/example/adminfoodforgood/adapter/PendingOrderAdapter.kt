@@ -1,26 +1,26 @@
 package com.example.adminfoodforgood.adapter
 
 import android.content.Context
-import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.example.adminfoodforgood.databinding.PendingOrdersItemBinding
 
 class PendingOrderAdapter(
     private val context: Context,
     private val customerNames: MutableList<String>,
     private val quantities: MutableList<String>,
-    private val foodImages: MutableList<String>
-) : RecyclerView.Adapter<PendingOrderAdapter.PendingOrderViewHolder>() {
+    private val foodImages: MutableList<String>,
+    private val itemClicked: OnItemClicked,
+    ) : RecyclerView.Adapter<PendingOrderAdapter.PendingOrderViewHolder>() {
+
+        interface OnItemClicked {
+            fun onItemClickLister(position: Int)
+        }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PendingOrderViewHolder {
         val binding =
@@ -62,6 +62,9 @@ class PendingOrderAdapter(
                         showToast("Order Dispatched")
                     }
                 }
+            }
+            itemView.setOnClickListener {
+                itemClicked.onItemClickLister(position)
             }
         }
     }
