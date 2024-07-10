@@ -2,8 +2,9 @@ package com.example.adminfoodforgood.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.io.Serializable
 
-class OrderDetails() : Parcelable {
+class OrderDetails() : Serializable {
     var userUid: String? = null
     var userName: String? = null
     var foodNames: MutableList<String>? = null
@@ -30,7 +31,7 @@ class OrderDetails() : Parcelable {
         currentTime = parcel.readLong()
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
+    fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(userUid)
         parcel.writeString(userName)
         parcel.writeString(address)
@@ -42,7 +43,7 @@ class OrderDetails() : Parcelable {
         parcel.writeLong(currentTime)
     }
 
-    override fun describeContents(): Int {
+    fun describeContents(): Int {
         return 0
     }
 

@@ -19,7 +19,7 @@ class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
     private var listOfName: MutableList<String> = mutableListOf()
     private var listOfQuantity: MutableList<String> = mutableListOf()
     private var listOfImageFirstFoodOrder:MutableList<String> = mutableListOf()
-    private var listOfOrderItems: MutableList<OrderDetails> = mutableListOf()
+    private var listOfOrderItems: ArrayList<OrderDetails> = arrayListOf()
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseOrderDetails: DatabaseReference
 
@@ -60,7 +60,7 @@ class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
 
 
     private fun addDataToListForRecyclerView() {
-        for (i in 0 until listOfOrderItems.size - 1) {
+        for (i in 0 until listOfOrderItems.size) {
             listOfOrderItems[i].foodNames?.firstOrNull()?.let {
                 listOfName.add(it)
                 listOfOrderItems[i].foodQuantities?.firstOrNull()?.let {
