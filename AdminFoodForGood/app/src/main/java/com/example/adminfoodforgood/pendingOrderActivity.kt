@@ -2,7 +2,7 @@ package com.example.adminfoodforgood
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.AdapterView.OnItemClickListener
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.adminfoodforgood.adapter.PendingOrderAdapter
@@ -18,7 +18,7 @@ class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
     private lateinit var binding: ActivityPendingOrderBinding
     private var listOfName: MutableList<String> = mutableListOf()
     private var listOfQuantity: MutableList<String> = mutableListOf()
-    private var listOfImageFirstFoodOrder:MutableList<String> = mutableListOf()
+    private var listOfImageFirstFoodOrder: MutableList<String> = mutableListOf()
     private var listOfOrderItems: ArrayList<OrderDetails> = arrayListOf()
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseOrderDetails: DatabaseReference
@@ -40,11 +40,11 @@ class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
 
     private fun getOrderDetails() {
         //retrieve order details from firebase database
-        databaseOrderDetails.addListenerForSingleValueEvent(object :ValueEventListener{
+        databaseOrderDetails.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                for(orderSnapShot in snapshot.children){
+                for (orderSnapShot in snapshot.children) {
                     val orderDetails = orderSnapShot.getValue(OrderDetails::class.java)
-                    orderDetails?.let{
+                    orderDetails?.let {
                         listOfOrderItems.add(it)
 
                     }
@@ -70,7 +70,13 @@ class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
                     }
 
                     binding.pendingOrderRecyclerView.layoutManager = LinearLayoutManager(this)
-                    val adapter = PendingOrderAdapter(this, listOfName, listOfQuantity, listOfImageFirstFoodOrder, this)
+                    val adapter = PendingOrderAdapter(
+                        this,
+                        listOfName,
+                        listOfQuantity,
+                        listOfImageFirstFoodOrder,
+                        this
+                    )
                     binding.pendingOrderRecyclerView.adapter = adapter
                 }
             }
@@ -83,4 +89,50 @@ class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
         intent.putExtra("userOrderDetails", userOrderDetails)
         startActivity(intent)
     }
+
+    override fun onItemAcceptClickListener(position: Int) {
+        //Handle item acceptance and update database
+        val childItemPushKey = listOfOrderItems[position].itemPushKey
+        val clickItemOrderReference = childItemPushKey?.let {
+            database.reference.child("orderDetails").child(it)
+        }
+        clickItemOrderReference?.child("AcceptedOrder")?.setValue(true)
+        updateOrderAcceptStatus(position)
+    }
+
+    override fun onItemDispatchedClickListener(position: Int) {
+        //Handle item dispatched and update database
+        val dispatchItemPushKey = listOfOrderItems[position].itemPushKey
+        val dispatchItemOrderReference =database.reference.child("CompletedOrder").child(dispatchItemPushKey!!)
+        dispatchItemOrderReference.setValue(listOfOrderItems[position])
+            .addOnSuccessListener {
+                deleteOrderFromOrderDetails(dispatchItemPushKey)
+            }
+    }
+
+    private fun deleteOrderFromOrderDetails(dispatchItemPushKey: String) {
+        val orderDetailsItemReference =
+            database.reference.child("orderDetails").child(dispatchItemPushKey)
+        orderDetailsItemReference.removeValue()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Order Dispatched", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Failed to Dispatch Order", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun updateOrderAcceptStatus(position: Int) {
+        // update order Status in users buy history and Detailers
+        val userIdOfClickedItem = listOfOrderItems[position].userUid
+        val pushKeyOfClickedItem = listOfOrderItems[position].itemPushKey
+        val buyHistoryRef =
+            database.reference.child("user").child(userIdOfClickedItem!!).child("BuyHistory")
+                .child(pushKeyOfClickedItem!!)
+        buyHistoryRef.child("AcceptedOrder").setValue(true)
+        databaseOrderDetails.child(pushKeyOfClickedItem).child("AcceptedOrder").setValue(true)
+    }
+
+
 }
+
