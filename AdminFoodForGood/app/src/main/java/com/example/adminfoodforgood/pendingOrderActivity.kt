@@ -96,7 +96,7 @@ class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
         val clickItemOrderReference = childItemPushKey?.let {
             database.reference.child("orderDetails").child(it)
         }
-        clickItemOrderReference?.child("AcceptedOrder")?.setValue(true)
+        clickItemOrderReference?.child("orderAccepted")?.setValue(true)
         updateOrderAcceptStatus(position)
     }
 
@@ -129,8 +129,9 @@ class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
         val buyHistoryRef =
             database.reference.child("user").child(userIdOfClickedItem!!).child("BuyHistory")
                 .child(pushKeyOfClickedItem!!)
-        buyHistoryRef.child("AcceptedOrder").setValue(true)
-        databaseOrderDetails.child(pushKeyOfClickedItem).child("AcceptedOrder").setValue(true)
+        buyHistoryRef.child("orderAccepted").setValue(true)
+
+        databaseOrderDetails.child(pushKeyOfClickedItem).child("orderAccepted").setValue(true)
     }
 
 
