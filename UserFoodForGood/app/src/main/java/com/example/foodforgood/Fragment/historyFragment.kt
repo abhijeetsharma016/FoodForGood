@@ -1,12 +1,14 @@
 package com.example.foodforgood.Fragment
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.foodforgood.adapter.BuyAgainAdapter
@@ -19,7 +21,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import java.io.Serializable
 
 class historyFragment : Fragment() {
     private lateinit var binding: FragmentHistoryBinding
@@ -45,7 +46,7 @@ class historyFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
 
         // Retrieve and display data from firebase
-        restiveBuyHistory()
+        retrieveBuyHistory()
 
 
         //button to open recent buy activity(when clicked on the recent buy item in history)
@@ -53,9 +54,24 @@ class historyFragment : Fragment() {
             seeItemsRecentBuy()
         }
 
+
+        binding.recivedButton.setOnClickListener {
+            updateOrderStatus()
+        }
+
         // Inflate the layout for this fragment
         // setupRecyclerView()
         return binding.root
+    }
+
+    //runs for received button
+    private fun updateOrderStatus() {
+        val itemPushKey = listOfOrderItems[listOfOrderItems.size - 1].itemPushKey
+        val completeOrderReference = database.reference.child("CompletedOrder").child(itemPushKey!!)
+        completeOrderReference.child("paymentReceived").setValue(true).addOnSuccessListener {
+            Toast.makeText(requireContext(), "Order Received", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     //fun to see items in recent buy
@@ -68,7 +84,7 @@ class historyFragment : Fragment() {
     }
 
     //fun to retrieve data from firebase in buyHistory
-    private fun restiveBuyHistory() {
+    private fun retrieveBuyHistory() {
         binding.recentBuyItem.visibility = View.INVISIBLE
         userId = auth.currentUser?.uid ?: ""
 
@@ -91,6 +107,15 @@ class historyFragment : Fragment() {
 
                     //setup the recycler view with prev order details
                     setPrevBuyItemRecyclerView()
+
+                    val isOrderAccepted = listOfOrderItems[listOfOrderItems.size - 1].orderAccepted
+
+                    if (isOrderAccepted == true) {
+                        binding.orderStatus.background.setTint(Color.GREEN)
+                        binding.recivedButton.visibility = View.VISIBLE
+                    } else {
+                        binding.recivedButton.visibility = View.INVISIBLE
+                    }
                 }
             }
 

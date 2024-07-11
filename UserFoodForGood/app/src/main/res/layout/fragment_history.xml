@@ -86,11 +86,10 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="32dp"
-                    app:cardBackgroundColor="@android:color/holo_green_dark"
+                    app:cardBackgroundColor="@color/grey_font"
                     app:cardCornerRadius="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"></androidx.cardview.widget.CardView>
+                    app:layout_constraintTop_toTopOf="parent"></androidx.cardview.widget.CardView>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/recivedButton"
