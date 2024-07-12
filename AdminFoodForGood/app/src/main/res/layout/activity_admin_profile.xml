@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintBottom_toTopOf="@+id/saveInfoButton"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:layout_editor_absoluteX="16dp">
 
@@ -102,8 +102,7 @@
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:fontFamily="@font/latoregular"
-                android:inputType="text"
-                android:text="Name" />
+                android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -139,8 +138,7 @@
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:fontFamily="@font/latoregular"
-                android:inputType="textMultiLine"
-                android:text="Lorem ipsum is placeholder text  commonly used in the graphic,  print, and publishing industries  for previewing layouts and visual " />
+                android:inputType="textMultiLine" />
         </LinearLayout>
 
         <LinearLayout
@@ -176,8 +174,7 @@
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:fontFamily="@font/latoregular"
-                android:inputType="text"
-                android:text="admin@gmail.com" />
+                android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -213,8 +210,7 @@
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:fontFamily="@font/latoregular"
-                android:inputType="number"
-                android:text="9876543210" />
+                android:inputType="number" />
         </LinearLayout>
 
         <LinearLayout
@@ -250,13 +246,12 @@
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:fontFamily="@font/latoregular"
-                android:inputType="textPassword"
-                android:text="9876543210" />
+                android:inputType="textPassword" />
         </LinearLayout>
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button7"
+        android:id="@+id/saveInfoButton"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="bottom"
