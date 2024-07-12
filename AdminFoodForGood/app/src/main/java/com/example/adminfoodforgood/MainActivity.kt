@@ -61,6 +61,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.logOut.setOnClickListener {
+            auth.signOut()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         pendingOrders()
 
         completedOrders()
