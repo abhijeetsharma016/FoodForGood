@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/wholeTimeEarning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -38,9 +38,9 @@
         android:text="Admin Dashboard"
         android:textColor="@color/textcolor"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="@+id/wholeTimeEarning"
+        app:layout_constraintStart_toStartOf="@+id/wholeTimeEarning"
+        app:layout_constraintTop_toBottomOf="@+id/wholeTimeEarning" />
 
     <TextView
         android:layout_width="wrap_content"
