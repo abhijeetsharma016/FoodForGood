@@ -49,11 +49,12 @@
                 android:id="@+id/foodNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/yeonsungregular"
                 android:text="Burger"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:layout_marginStart="16sp"
                 app:layout_constraintStart_toEndOf="@+id/cardView8"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,6 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16sp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/yeonsungregular"
                 android:text="$ 35"
                 android:textColor="@color/textcolor"
@@ -70,50 +72,19 @@
                 app:layout_constraintStart_toEndOf="@+id/cardView8" />
 
             <ImageButton
-                android:id="@+id/minusButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:src="@drawable/minus_button"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/quantityTextView"
-                app:layout_constraintEnd_toStartOf="@+id/quantityTextView"
-                app:layout_constraintTop_toTopOf="@+id/quantityTextView"
-                app:layout_constraintVertical_bias="0.428" />
-
-            <TextView
-                android:id="@+id/quantityTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/plusButton"
-                app:layout_constraintEnd_toStartOf="@+id/plusButton"
-                app:layout_constraintTop_toTopOf="@+id/plusButton" />
-
-            <ImageButton
-                android:id="@+id/plusButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/plus_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
                 android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="37dp"
+                android:layout_height="38dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="20dp"
                 android:background="@color/transparent"
+                android:paddingStart="2dp"
+                android:paddingLeft="2dp"
+                android:paddingTop="5dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/trash_button"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/plusButton"
-                app:layout_constraintStart_toStartOf="@+id/minusButton"
-                app:layout_constraintTop_toBottomOf="@+id/minusButton" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,7 +35,6 @@ class menuItemAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
             binding.apply {
-                val quantity = itemQuantity[position]
                 val menuItem = menuList[position]
                 val uriString = menuItem.foodImage
                 val uri = Uri.parse(uriString)
@@ -51,37 +50,18 @@ class menuItemAdapter(
                     .override(200, 200) // resize to 200x200
                     .into(foodImageView) // glide is used to load the image from firebase in speed
 
-                quantityTextView.text = quantity.toString()
-                minusButton.setOnClickListener {
-                    decreaseQuantity(position)
-                }
-                plusButton.setOnClickListener {
-                    increaseQuantity(position)
-                }
+
                 deleteButton.setOnClickListener {
                     onDeleteClickListener(position)
                 }
             }
         }
 
-        private fun decreaseQuantity(position: Int) {
-            if (itemQuantity[position] > 1) {
-                itemQuantity[position]--
-                binding.quantityTextView.text = itemQuantity[position].toString()
-            }
-        }
+    }
 
-        private fun increaseQuantity(position: Int) {
-            if (itemQuantity[position] < 10) {
-                itemQuantity[position]++
-                binding.quantityTextView.text = itemQuantity[position].toString()
-            }
-        }
-
-        private fun deleteQuantity(position: Int) {
-            menuList.removeAt(position)
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, menuList.size)
-        }
+    private fun deleteQuantity(position: Int) {
+        menuList.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, menuList.size)
     }
 }
