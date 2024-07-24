@@ -17,7 +17,6 @@ import com.google.firebase.database.ValueEventListener
 class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClicked {
     private lateinit var binding: ActivityPendingOrderBinding
     private var listOfName: MutableList<String> = mutableListOf()
-    private var listOfQuantity: MutableList<String> = mutableListOf()
     private var listOfImageFirstFoodOrder: MutableList<String> = mutableListOf()
     private var listOfOrderItems: ArrayList<OrderDetails> = arrayListOf()
     private lateinit var database: FirebaseDatabase
@@ -59,7 +58,7 @@ class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
     }
 
 
-    private fun addDataToListForRecyclerView() {
+/*    private fun addDataToListForRecyclerView() {
         for (i in 0 until listOfOrderItems.size) {
             listOfOrderItems[i].foodNames?.firstOrNull()?.let {
                 listOfName.add(it)
@@ -81,7 +80,29 @@ class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
                 }
             }
         }
-    }
+    }*/
+private fun addDataToListForRecyclerView() {
+    for(order in listOfOrderItems){
+        order.userName?.let {
+            listOfName.add(it)
+        }
+
+        for (i in 0 until listOfOrderItems.size) {
+                    listOfOrderItems[i].foodImages?.firstOrNull()?.let {
+                        listOfImageFirstFoodOrder.add(it)
+                    }
+
+                    binding.pendingOrderRecyclerView.layoutManager = LinearLayoutManager(this)
+                    val adapter = PendingOrderAdapter(
+                        this,
+                        listOfName,
+                        listOfImageFirstFoodOrder,
+                        this
+                    )
+                    binding.pendingOrderRecyclerView.adapter = adapter
+                }
+            }
+        }
 
     override fun onItemClickLister(position: Int) {
         val intent = Intent(this, OrderDetailsActivity::class.java)

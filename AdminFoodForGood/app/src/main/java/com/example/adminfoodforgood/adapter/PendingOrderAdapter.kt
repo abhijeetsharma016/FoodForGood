@@ -12,7 +12,6 @@ import com.example.adminfoodforgood.databinding.PendingOrdersItemBinding
 class PendingOrderAdapter(
     private val context: Context,
     private val customerNames: MutableList<String>,
-    private val quantities: MutableList<String>,
     private val foodImages: MutableList<String>,
     private val itemClicked: OnItemClicked,
     ) : RecyclerView.Adapter<PendingOrderAdapter.PendingOrderViewHolder>() {
@@ -31,7 +30,7 @@ class PendingOrderAdapter(
     }
 
     override fun onBindViewHolder(holder: PendingOrderViewHolder, position: Int) {
-        holder.bind(customerNames[position], quantities[position], foodImages[position])
+        holder.bind(customerNames[position], foodImages[position])
     }
 
     override fun getItemCount(): Int = customerNames.size
@@ -40,10 +39,9 @@ class PendingOrderAdapter(
         RecyclerView.ViewHolder(binding.root) {
         private var isAccepted = false
 
-        fun bind(foodName: String, foodPrice: String, foodImage: String) {
+        fun bind(foodName: String, foodImage: String) {
             binding.apply {
                 customerName.text = foodName
-                pendingOrderQuentity.text = foodPrice
 
                 // Log the image URL
                 Log.d("Adapter", "Image URL: $foodImage")
