@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -38,10 +39,11 @@
                 android:id="@+id/buyAgainFoodName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/yeonsungregular"
                 android:text="FoodName"
-                app:layout_constraintBottom_toTopOf="@+id/buyAgainFoodPrice"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/buyAgainFoodImage"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,25 +54,12 @@
                 android:fontFamily="@font/yeonsungregular"
                 android:text="$5"
                 android:textColor="@color/textColor"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/buyAgainFoodName"
-                app:layout_constraintTop_toBottomOf="@+id/buyAgainFoodName"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buyAgainFoodButton"
-                android:layout_width="85dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/add_to_cart"
-                android:fontFamily="@font/yeonsungregular"
-                android:text="Buy_Again"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/buyAgainFoodName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/buyAgainFoodName"
+                app:layout_constraintTop_toTopOf="@+id/buyAgainFoodName" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
