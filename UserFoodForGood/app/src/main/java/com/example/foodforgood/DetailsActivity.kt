@@ -61,6 +61,7 @@ class DetailsActivity : AppCompatActivity() {
         //save data of cart to firebase
         database.child("user").child(userId).child("cartItems").push().setValue(cartItem).addOnSuccessListener {
             Toast.makeText(this, "Item added to cart Successfully 😁", Toast.LENGTH_SHORT).show()
+            finish()
         }.addOnFailureListener{
             Toast.makeText(this, "Failed to add item to cart 😔", Toast.LENGTH_SHORT).show()
         }
