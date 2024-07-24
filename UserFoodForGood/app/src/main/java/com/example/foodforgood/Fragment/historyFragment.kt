@@ -112,6 +112,7 @@ class historyFragment : Fragment() {
 
                     if (isOrderAccepted == true) {
                         binding.orderStatus.background.setTint(Color.GREEN)
+                        binding.bgCardView.background.setTint(Color.GREEN)
                         binding.recivedButton.visibility = View.VISIBLE
                     } else {
                         binding.recivedButton.visibility = View.INVISIBLE
