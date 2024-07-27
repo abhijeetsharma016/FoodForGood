@@ -128,6 +128,6 @@ class SignupActivity : AppCompatActivity() {
                 val userId = FirebaseAuth.getInstance().currentUser!!.uid
 
                 //save data to firebasedatabase
-                database.child("user").child(userId).setValue(user)
+                database.child("user").child(userId).child("details").setValue(user)
             }
         }

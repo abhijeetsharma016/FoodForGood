@@ -137,7 +137,7 @@ class PayOutActivity : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val userId = user.uid
-            val userReference = databaseReference.child("user").child(userId)
+            val userReference = databaseReference.child("user").child(userId).child("details")
 
             userReference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

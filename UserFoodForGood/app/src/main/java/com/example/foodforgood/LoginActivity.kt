@@ -101,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
 
         //save user data to database
-        database.child("user").child(userId).setValue(user)
+        database.child("user").child(userId).child("details").setValue(user)
     }
 
     override fun onStart() {

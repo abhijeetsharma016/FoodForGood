@@ -70,7 +70,7 @@ class profileFragment : Fragment() {
         val userid = auth.currentUser?.uid
 
         if (userid != null) {
-            val userRef = firebaseDatabase.getReference("user").child(userid)
+            val userRef = firebaseDatabase.getReference("user").child(userid).child("details")
 
             val userData =hashMapOf(
                 "name" to name,
@@ -91,7 +91,7 @@ class profileFragment : Fragment() {
         //set user data
         val userId = auth.currentUser?.uid
         if (userId != null) {
-            val userRef = firebaseDatabase.getReference("user").child(userId)
+            val userRef = firebaseDatabase.getReference("user").child(userId).child("details")
             userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
