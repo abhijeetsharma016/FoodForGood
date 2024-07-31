@@ -74,59 +74,54 @@ class MainActivity : AppCompatActivity() {
         wholeTimeEarning()
     }
 
+
     private fun wholeTimeEarning() {
         var listOfTotalPay = mutableListOf<Int>()
 
-
-        completedOrderReference.addListenerForSingleValueEvent(object : ValueEventListener {
+        completedOrderReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
+                listOfTotalPay.clear() // Clear the list before updating
                 for (orderSnapshot in snapshot.children) {
                     var completeOrder = orderSnapshot.getValue(OrderDetails::class.java)
 
                     completeOrder?.totalPrice?.replace("₹", "")?.toIntOrNull()
                         ?.let { i -> listOfTotalPay.add(i) }
                 }
-            binding.wholeTimeEarning.text = listOfTotalPay.sum().toString() +"₹"
-        }
+                binding.wholeTimeEarning.text = listOfTotalPay.sum().toString() + "₹"
+            }
 
-                override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
-    })
-}
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
 
-private fun pendingOrders() {
-    database = FirebaseDatabase.getInstance()
-    var pendingOrderRef = database.reference.child("orderDetails")
-    var pendingOrderItemCount = 0
-    pendingOrderRef.addListenerForSingleValueEvent(object : ValueEventListener {
-        override fun onDataChange(snapshot: DataSnapshot) {
-            pendingOrderItemCount = snapshot.childrenCount.toInt()
-            binding.pendingOrders.text = pendingOrderItemCount.toString()
-        }
+    private fun pendingOrders() {
+        database = FirebaseDatabase.getInstance()
+        var pendingOrderRef = database.reference.child("orderDetails")
+        pendingOrderRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val pendingOrderItemCount = snapshot.childrenCount.toInt()
+                binding.pendingOrders.text = pendingOrderItemCount.toString()
+            }
 
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
-    })
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
 
-}
+    private fun completedOrders() {
+        var completedOrderRef = database.reference.child("CompletedOrder")
+        completedOrderRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val completedOrderItemCount = snapshot.childrenCount.toInt()
+                binding.completedOrders.text = completedOrderItemCount.toString()
+            }
 
-private fun completedOrders() {
-    var completedOrderRef = database.reference.child("CompletedOrder")
-    var completedOrderItemCount = 0
-    completedOrderRef.addListenerForSingleValueEvent(object : ValueEventListener {
-        override fun onDataChange(snapshot: DataSnapshot) {
-            completedOrderItemCount = snapshot.childrenCount.toInt()
-            binding.completedOrders.text = completedOrderItemCount.toString()
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
-    })
-}
-
-
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
 }
