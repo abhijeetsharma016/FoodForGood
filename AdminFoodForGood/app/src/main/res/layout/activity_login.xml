@@ -106,24 +106,8 @@
         android:paddingLeft="15dp"
         android:shadowColor="@color/textcolor"
         android:text="Google"
-        app:layout_constraintEnd_toStartOf="@+id/FacebookButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/FacebookButton"
-        android:layout_width="125dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/edittextshape"
-        android:drawableLeft="@drawable/facebook_logo"
-        android:paddingLeft="15dp"
-        android:shadowColor="@color/textcolor"
-        android:text="Facebook"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/GoogleButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -137,8 +121,6 @@
         android:text="Login"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/FacebookButton"
-        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="@+id/GoogleButton"
         app:layout_constraintTop_toBottomOf="@+id/GoogleButton" />
 
