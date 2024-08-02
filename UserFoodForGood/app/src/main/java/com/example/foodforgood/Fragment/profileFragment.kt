@@ -61,6 +61,13 @@ class profileFragment : Fragment() {
             val address = binding.address.text.toString()
 
             updateUserData(name, email, phone, address)
+
+            isEnable = false
+            binding.name.isEnabled = isEnable
+            binding.address.isEnabled = isEnable
+            binding.phone.isEnabled = isEnable
+            binding.email.isEnabled = isEnable
+            binding.saveInfoButton.isEnabled = !isEnable
         }
         return binding.root
 

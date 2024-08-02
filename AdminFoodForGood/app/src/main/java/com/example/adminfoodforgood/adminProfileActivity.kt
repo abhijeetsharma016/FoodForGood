@@ -27,9 +27,6 @@ class adminProfileActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         adminReference = database.reference.child("user")
 
-        binding.saveInfoButton.setOnClickListener{
-            setUserData()
-        }
 
 
         binding.backButton.setOnClickListener{
@@ -55,6 +52,16 @@ class adminProfileActivity : AppCompatActivity() {
             if (isEnable) {
                 binding.name.requestFocus()
             }
+        }
+        binding.saveInfoButton.setOnClickListener{
+            setUserData()
+            isEnable = false
+            binding.name.isEnabled = isEnable
+            binding.address.isEnabled = isEnable
+            binding.phone.isEnabled = isEnable
+            binding.email.isEnabled = isEnable
+            binding.password.isEnabled = isEnable
+            binding.saveInfoButton.isEnabled = !isEnable
         }
 
         retrieveUserData()
