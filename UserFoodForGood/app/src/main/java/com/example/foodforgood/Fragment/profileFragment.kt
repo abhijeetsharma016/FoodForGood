@@ -1,11 +1,13 @@
 package com.example.foodforgood.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.foodforgood.LoginActivity
 import com.example.foodforgood.R
 import com.example.foodforgood.databinding.FragmentProfileBinding
 import com.example.foodforgood.model.UserModel
@@ -34,9 +36,6 @@ class profileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         setUserData()
-        binding.editButton.setOnClickListener {
-
-        }
         binding.name.isEnabled = false
         binding.address.isEnabled = false
         binding.phone.isEnabled = false
@@ -68,6 +67,15 @@ class profileFragment : Fragment() {
             binding.phone.isEnabled = isEnable
             binding.email.isEnabled = isEnable
             binding.saveInfoButton.isEnabled = !isEnable
+        }
+
+        binding.logoutButton.setOnClickListener {
+            binding.logoutButton.setOnClickListener {
+                auth.signOut()
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+            }
         }
         return binding.root
 

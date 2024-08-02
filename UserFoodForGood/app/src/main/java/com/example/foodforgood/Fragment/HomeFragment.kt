@@ -106,7 +106,9 @@ class HomeFragment : Fragment() {
         imageSlider.setImageList(imageList, ScaleTypes.FIT)
         imageSlider.setItemClickListener(object : ItemClickListener {
             override fun doubleClick(position: Int) {
-                TODO("Not yet implemented")
+                val itemPosition = imageList[position]
+                val itemMessage = "Selected Image $position"
+                Toast.makeText(requireContext(), itemMessage, Toast.LENGTH_SHORT).show()
             }
 
             override fun onItemSelected(position: Int) {
