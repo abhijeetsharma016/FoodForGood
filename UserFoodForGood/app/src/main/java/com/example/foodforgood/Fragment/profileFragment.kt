@@ -69,14 +69,12 @@ class profileFragment : Fragment() {
             binding.saveInfoButton.isEnabled = !isEnable
         }
 
-        binding.logoutButton.setOnClickListener {
             binding.logoutButton.setOnClickListener {
                 auth.signOut()
                 val intent = Intent(requireContext(), LoginActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()
             }
-        }
         return binding.root
 
     }
