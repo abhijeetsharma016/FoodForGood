@@ -66,7 +66,30 @@ class PayOutActivity : AppCompatActivity() {
             name = binding.name.text.toString().trim()
             address = binding.address.text.toString().trim()
             phone = binding.phone.text.toString().trim()
-            if (name.isEmpty() || address.isEmpty() || phone.isEmpty()) {
+            var allFieldsFilled = true
+
+            if (name.isEmpty()) {
+                binding.nameLayout.setBackgroundResource(R.color.error_color)
+                allFieldsFilled = false
+            } else {
+                binding.name.setBackgroundResource(R.drawable.profileedittextshape)
+            }
+
+            if (address.isEmpty()) {
+                binding.addressLayout.setBackgroundResource(R.color.error_color)
+                allFieldsFilled = false
+            } else {
+                binding.address.setBackgroundResource(R.drawable.profileedittextshape)
+            }
+
+            if (phone.isEmpty()) {
+                binding.phoneLayout.setBackgroundResource(R.color.error_color)
+                allFieldsFilled = false
+            } else {
+                binding.phone.setBackgroundResource(R.drawable.profileedittextshape)
+            }
+
+            if (!allFieldsFilled) {
                 Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
             } else {
                 placeOrder()
