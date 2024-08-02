@@ -48,11 +48,12 @@ class cartFragment : Fragment() {
         restiveCardItems()
 
 
-
         binding.cartProceedButton.setOnClickListener {
-            //get item details before proceeding
-            getOrderedDetails()
-
+            if (foodName.isEmpty()) {
+                Toast.makeText(requireContext(), "Cart is empty", Toast.LENGTH_SHORT).show()
+            } else {
+                getOrderedDetails()
+            }
         }
         return binding.root
     }
