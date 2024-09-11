@@ -12,14 +12,9 @@ FOODFORGOOD is currently under development. It is being built using Kotlin, Fire
 - **Real-time Database**: Firebase Real-time Database is used to store and sync data in real-time.
 - **Food Ordering**: Users can browse through a variety of food options and place orders with just a few taps.
 - **Order Tracking**: Users can track their orders in real-time.
-
-## Progress
-
-While the app is still under development, I have made significant progress. I encourage you to check out our progress and provide any feedback you may have.
-
 ## Contributions
 
-I Ilcome contributions! If you're interested in contributing, please feel free to fork the repository and submit a pull request. I appreciate any help you can provide.
+I Welcome contributions! If you're interested in contributing, please feel free to fork the repository and submit a pull request. I appreciate any help you can provide.
 
 
 ## SCREENSHOTS
