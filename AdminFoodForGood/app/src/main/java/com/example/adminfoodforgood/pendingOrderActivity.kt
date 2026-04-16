@@ -82,28 +82,30 @@ class pendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
         }
     }*/
 private fun addDataToListForRecyclerView() {
-    for(order in listOfOrderItems){
-        order.userName?.let {
-            listOfName.add(it)
-        }
+    // 1. Clear existing lists to prevent duplication if this is called multiple times
+    listOfName.clear()
+    listOfImageFirstFoodOrder.clear()
 
-        for (i in 0 until listOfOrderItems.size) {
-                    listOfOrderItems[i].foodImages?.firstOrNull()?.let {
-                        listOfImageFirstFoodOrder.add(it)
-                    }
+    // 2. Use a single loop to populate both lists evenly
+    for (order in listOfOrderItems) {
+        // Add the user name (use a fallback like "" if it's null to keep list sizes identical)
+        listOfName.add(order.userName ?: "")
 
-                    binding.pendingOrderRecyclerView.layoutManager = LinearLayoutManager(this)
-                    val adapter = PendingOrderAdapter(
-                        this,
-                        listOfName,
-                        listOfImageFirstFoodOrder,
-                        this
-                    )
-                    binding.pendingOrderRecyclerView.adapter = adapter
-                }
-            }
-        }
+        // Add the first food image (use a fallback like "" if null)
+        val firstImage = order.foodImages?.firstOrNull() ?: ""
+        listOfImageFirstFoodOrder.add(firstImage)
+    }
 
+    // 3. Set up the LayoutManager and Adapter exactly ONCE outside the loop
+    binding.pendingOrderRecyclerView.layoutManager = LinearLayoutManager(this)
+    val adapter = PendingOrderAdapter(
+        this,
+        listOfName,
+        listOfImageFirstFoodOrder,
+        this
+    )
+    binding.pendingOrderRecyclerView.adapter = adapter
+}
     override fun onItemClickLister(position: Int) {
         val intent = Intent(this, OrderDetailsActivity::class.java)
         val userOrderDetails = listOfOrderItems[position]

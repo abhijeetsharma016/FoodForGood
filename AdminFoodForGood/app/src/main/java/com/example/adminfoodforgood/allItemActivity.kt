@@ -14,7 +14,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.util.ArrayList
-import kotlin.math.log
 
 class allItemActivity : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference

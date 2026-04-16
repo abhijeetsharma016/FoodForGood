@@ -43,30 +43,40 @@ class PendingOrderAdapter(
             binding.apply {
                 customerName.text = foodName
 
-                // Log the image URL
+                // Log the image URL to verify it's not empty
                 Log.d("Adapter", "Image URL: $foodImage")
 
                 Glide.with(itemView.context)
                     .load(foodImage)
-                    .override(300, 200) // Set the width and height to 300 and 200 respectively
+                    .override(300, 200)
                     .into(orderFoodItemImage)
 
                 orderAcceptButton.setOnClickListener {
-                    if (!isAccepted) {
-                        orderAcceptButton.text = "Dispatch"
-                        isAccepted = true
-                        showToast("Order Accepted")
-                        itemClicked.onItemAcceptClickListener(position)
-                    } else {
-                        customerNames.removeAt(adapterPosition)
-                        notifyItemRemoved(adapterPosition)
-                        showToast("Order Dispatched")
-                        itemClicked.onItemDispatchedClickListener(position)
+                    val currentPosition = adapterPosition
+                    // Safety check to ensure the item still exists
+                    if (currentPosition != RecyclerView.NO_POSITION) {
+                        if (!isAccepted) {
+                            orderAcceptButton.text = "Dispatch"
+                            isAccepted = true
+                            showToast("Order Accepted")
+                            itemClicked.onItemAcceptClickListener(currentPosition)
+                        } else {
+                            // FIX: Remove from BOTH lists to keep data synchronized
+                            customerNames.removeAt(currentPosition)
+                            foodImages.removeAt(currentPosition)
+                            notifyItemRemoved(currentPosition)
+
+                            showToast("Order Dispatched")
+                            itemClicked.onItemDispatchedClickListener(currentPosition)
+                        }
                     }
                 }
             }
             itemView.setOnClickListener {
-                itemClicked.onItemClickLister(position)
+                val currentPosition = adapterPosition
+                if (currentPosition != RecyclerView.NO_POSITION) {
+                    itemClicked.onItemClickLister(currentPosition)
+                }
             }
         }
     }
